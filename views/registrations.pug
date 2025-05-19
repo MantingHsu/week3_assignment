@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title All Registrations
+  body
+    h1 Registrations
+    if registrations.length === 0
+      p No registrations yet.
+    else
+      table(border="1")
+        thead
+          tr
+            th Name
+            th Email
+            th Phone
+        tbody
+          each reg in registrations
+            tr
+              td= reg.name
+              td= reg.email
+              td= reg.phone
