@@ -2,20 +2,23 @@ doctype html
 html
   head
     title All Registrations
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/styles.css")
   body
-    h1 Registrations
-    if registrations.length === 0
-      p No registrations yet.
-    else
-      table(border="1")
-        thead
-          tr
-            th Name
-            th Email
-            th Phone
-        tbody
-          each reg in registrations
+    .container
+      h1.mt-4.mb-4 Registrations
+      if registrations.length === 0
+        p.text-muted No registrations yet.
+      else
+        table.table.table-bordered.table-striped.shadow-sm.bg-white
+          thead.thead-dark
             tr
-              td= reg.name
-              td= reg.email
-              td= reg.phone
+              th Name
+              th Email
+              th Phone
+          tbody
+            each reg in registrations
+              tr
+                td= reg.name
+                td= reg.email
+                td= reg.phone

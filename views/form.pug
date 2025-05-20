@@ -2,16 +2,21 @@ doctype html
 html
   head
     title Registration Form
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/styles.css")
   body
-    h1 Register
-    form(action="/register", method="POST")
-      label(for="name") Name:
-      input(type="text", name="name", required=true)
-      br
-      label(for="email") Email:
-      input(type="email", name="email", required=true)
-      br
-      label(for="phone") Phone:
-      input(type="text", name="phone", required=true)
-      br
-      button(type="submit") Register
+    .container
+      h1.mt-5.mb-4.text-center Register
+      .row.justify-content-center
+        .col-md-6
+          form(action="/register", method="POST", class="p-4 border rounded shadow-sm bg-white")
+            .form-group
+              label(for="name") Name:
+              input.form-control(type="text", name="name", required=true, placeholder="Enter your name")
+            .form-group
+              label(for="email") Email:
+              input.form-control(type="email", name="email", required=true, placeholder="Enter your email")
+            .form-group
+              label(for="phone") Phone:
+              input.form-control(type="text", name="phone", required=true, placeholder="Enter your phone")
+            button.btn.btn-primary.btn-block(type="submit") Register

@@ -23,12 +23,12 @@ mongoose.connection.on('error', (err) => {
 // Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
 
+// Static file middleware (MUST come before routes)
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Set up views
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
-// Use static files (optional, for CSS/JS)
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 const indexRouter = require('./routes/index');

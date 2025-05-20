@@ -1,0 +1,32 @@
+body {
+  background-color: #f8f9fa; /* light gray background */
+}
+
+.container {
+  margin-top: 40px;
+}
+
+h1 {
+  color: #007bff; /* Bootstrap primary blue */
+  font-weight: 700;
+}
+
+form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin-top: 20px;
+}
+
+.form-group label {
+  font-weight: 500;
+}
+
+input.form-control {
+  margin-bottom: 16px;
+}
+
+button.btn-block {
+  width: 100%;
+}

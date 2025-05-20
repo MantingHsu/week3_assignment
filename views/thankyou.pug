@@ -3,7 +3,11 @@ html
   head
     title Thank You
     link(rel="stylesheet", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/styles.css")
   body
-    .container
-      h1.mt-4 Thank you for registering!
-      a(href="/register" class="btn btn-link mt-4") Register another user
+    .container.text-center
+      h1.mt-5.mb-4.text-success Thank you for registering!
+      p Your information has been submitted successfully.
+      a.btn.btn-primary.mt-4(href="/register") Register another user
+      br
+      a.btn.btn-outline-secondary.mt-2(href="/registrations") View all registrations

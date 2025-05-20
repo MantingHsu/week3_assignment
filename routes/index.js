@@ -1,22 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const Registration = require('../models/Registration');
-
-// Add these for authentication
 const auth = require('http-auth');
 const path = require('path');
 
-// Set up HTTP authentication using the users.htpasswd file
+// HTTP Basic Authentication setup
 const basic = auth.basic({
-  file: path.join(__dirname, '../users.htpasswd') // path to your htpasswd file
+  file: path.join(__dirname, '../users.htpasswd')
 });
 
-// GET: Render registration form
+// GET: Render the registration form
 router.get('/register', (req, res) => {
   res.render('form');
 });
 
-// POST: Save registration data
+// POST: Handle form submission and save to DB
 router.post('/register', async (req, res) => {
   try {
     const registration = new Registration({
@@ -24,25 +22,26 @@ router.post('/register', async (req, res) => {
       email: req.body.email,
       phone: req.body.phone
     });
-
     await registration.save();
-    // To use the "Thank you" page, uncomment below and create views/thankyou.pug
-    // res.render('thankyou');
-    // Or use this simple message:
-    res.send('Thank you for registering!');
+    res.render('thankyou'); // Show thank you page
   } catch (err) {
     res.status(500).send('Error saving registration: ' + err.message);
   }
 });
 
-// GET: List all registrations (protected by authentication)
-router.get('/registrations', auth.connect(basic), async (req, res) => {
+// GET: Show all registrations (protected)
+router.get('/registrations', basic.check(async (req, res) => {
   try {
     const registrations = await Registration.find();
     res.render('registrations', { registrations });
   } catch (err) {
     res.status(500).send('Error retrieving registrations: ' + err.message);
   }
+}));
+
+// OPTIONAL: Redirect root "/" to registration form
+router.get('/', (req, res) => {
+  res.redirect('/register');
 });
 
 module.exports = router;
